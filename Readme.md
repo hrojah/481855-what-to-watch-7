@@ -1,9 +1,8 @@
 # Личный проект «Что посмотреть»
 
 * Студент: [Владимир Плотников](https://up.htmlacademy.ru/react/7/user/481855).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Кривонос] (https://htmlacademy.ru/profile/id1311037).
 
----
 
 _Не удаляйте и не изменяйте папки и файлы:_
 _`.editorconfig`, `.gitattributes`, `.gitignore`._
