@@ -1,9 +1,11 @@
 import React from 'react';
 import FilmCard from '../film-card/film-card';
+import Genre from '../genre/genre';
 import PropTypes from 'prop-types';
+import {GENRES_ITEMS} from '../../constants/constants';
 
 function Main(props) {
-  const {filmsCount, name, date, genre} = props;
+  const {filmsCount, name, date, genreHeader} = props;
   return (
     <body>
       <div className="visually-hidden">
@@ -75,7 +77,7 @@ function Main(props) {
             <div className="film-card__desc">
               <h2 className="film-card__title">{name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__genre">{genreHeader}</span>
                 <span className="film-card__year">{date}</span>
               </p>
 
@@ -103,36 +105,7 @@ function Main(props) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
+            {GENRES_ITEMS.map((genre, i) => <Genre key={genre} genre={genre} index={i}/>)}
           </ul>
 
           <div className="catalog__films-list">
@@ -164,8 +137,8 @@ function Main(props) {
 Main.propTypes = {
   filmsCount: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  genreHeader: PropTypes.string.isRequired,
+  date: PropTypes.number.isRequired,
 };
 
 export default Main;
