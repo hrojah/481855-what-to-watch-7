@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import Review from './review';
 
 function FilmReviews(props) {
-  const {reviewsCount} = props;
+  const {reviews} = props;
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {new Array(reviewsCount).fill().map((i) => <Review key={i}/>)}
+        {reviews.map((review) => <Review user={review.user} date={review.date} rating={review.rating} comment={review.comment} key={review.id}/>)}
       </div>
       <div className="film-card__reviews-col">
-        {new Array(reviewsCount).fill().map((i) => <Review key={i}/>)}
+        {reviews.map((review) => <Review user={review.user} date={review.date} rating={review.rating} comment={review.comment} key={review.id}/>)}
       </div>
     </div>
   );
 }
 
 FilmReviews.propTypes = {
-  reviewsCount: PropTypes.number.isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
 export default FilmReviews;

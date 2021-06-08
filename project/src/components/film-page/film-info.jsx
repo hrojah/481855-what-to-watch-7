@@ -2,7 +2,7 @@ import React from 'react';
 
 function FilmInfo() {
   return (
-    <React.Fragment>
+    <>
       <div className="film-rating">
         <div className="film-rating__score">8,9</div>
         <p className="film-rating__meta">
@@ -16,7 +16,7 @@ function FilmInfo() {
         <p className="film-card__director"><strong>Director: Wes Andreson</strong></p>
         <p className="film-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

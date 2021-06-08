@@ -8,9 +8,9 @@ import FilmReviews from './film-reviews';
 import {Link} from 'react-router-dom';
 
 function FilmPage(props) {
-  const {filmsCount, filmInfo, filmReviews, name, date, genreHeader, reviewsCount} = props;
+  const {filmInfo, filmReviews, name, date, genreHeader, films, reviews} = props;
   return (
-    <body>
+    <>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <symbol id="add" viewBox="0 0 19 20">
@@ -105,7 +105,7 @@ function FilmPage(props) {
                 </ul>
               </nav>
               {filmInfo ? <FilmInfo/> : ''}
-              {filmReviews ? <FilmReviews reviewsCount={reviewsCount}/> : ''}
+              {filmReviews ? <FilmReviews reviews={reviews}/> : ''}
 
             </div>
           </div>
@@ -117,7 +117,7 @@ function FilmPage(props) {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            {new Array(filmsCount).fill().map((i) => <FilmCard key={i}/>)}
+            {films.map((film) => <FilmCard key={film.id} name={film.name} poster={film.poster}/>)}
           </div>
         </section>
 
@@ -129,18 +129,18 @@ function FilmPage(props) {
           </div>
         </footer>
       </div>
-    </body>
+    </>
   );
 }
 
 FilmPage.propTypes = {
-  filmsCount: PropTypes.number.isRequired,
   filmInfo: PropTypes.bool.isRequired,
   filmReviews: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   genreHeader: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  reviewsCount: PropTypes.number,
+  films: PropTypes.array.isRequired,
+  reviews: PropTypes.array,
 };
 
 export default FilmPage;

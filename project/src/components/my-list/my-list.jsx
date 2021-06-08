@@ -5,9 +5,9 @@ import FilmCard from '../film-card/film-card';
 import PropTypes from 'prop-types';
 
 function MyList(props) {
-  const {filmsCount} = props;
+  const {films} = props;
   return (
-    <body>
+    <>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <symbol id="add" viewBox="0 0 19 20">
@@ -50,7 +50,7 @@ function MyList(props) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <div className="catalog__films-list">
-            {new Array(filmsCount).fill().map((i) => <FilmCard key={i}/>)}
+            {films.map((film) => <FilmCard key={film.id} name={film.name} poster={film.poster}/>)}
           </div>
         </section>
 
@@ -62,12 +62,12 @@ function MyList(props) {
           </div>
         </footer>
       </div>
-    </body>
+    </>
   );
 }
 
 MyList.propTypes = {
-  filmsCount: PropTypes.number.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default MyList;

@@ -7,9 +7,9 @@ import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
 
 function Main(props) {
-  const {filmsCount, name, date, genreHeader} = props;
+  const {name, date, genreHeader, films} = props;
   return (
-    <body>
+    <>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <symbol id="add" viewBox="0 0 19 20">
@@ -95,7 +95,7 @@ function Main(props) {
           </ul>
 
           <div className="catalog__films-list">
-            {new Array(filmsCount).fill().map((i) => <FilmCard key={i}/>)}
+            {films.map((item) => <FilmCard poster={item.poster} name={item.name} key={item.id}/>)}
           </div>
 
           <div className="catalog__more">
@@ -111,14 +111,14 @@ function Main(props) {
           </div>
         </footer>
       </div>
-    </body>);
+    </>);
 }
 
 Main.propTypes = {
-  filmsCount: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   genreHeader: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default Main;
