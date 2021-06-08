@@ -1,13 +1,11 @@
 import React from 'react';
-import FilmCard from '../film-card/film-card';
-import Genre from '../genre/genre';
-import PropTypes from 'prop-types';
-import {GENRES_ITEMS} from '../../constants/constants';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
+import FilmCard from '../film-card/film-card';
+import PropTypes from 'prop-types';
 
-function Main(props) {
-  const {filmsCount, name, date, genreHeader} = props;
+function MyList(props) {
+  const {filmsCount} = props;
   return (
     <body>
       <div className="visually-hidden">
@@ -29,9 +27,6 @@ function Main(props) {
             <path fillRule="evenodd" clipRule="evenodd" d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z" fill="#EEE5B5"/>
           </symbol>
           <symbol id="pause" viewBox="0 0 14 21">
-            <symbol id="play-s" viewBox="0 0 19 19">
-              <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5"/>
-            </symbol>
             <title>Artboard</title>
             <desc>Created with Sketch.</desc>
             <g id="Artboard" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -42,64 +37,20 @@ function Main(props) {
         </svg>
       </div>
 
-      <section className="film-card">
-        <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
-        </div>
-
-        <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header film-card__head">
+      <div className="user-page">
+        <header className="page-header user-page__head">
           <Logo/>
+
+          <h1 className="page-title user-page__title">My list</h1>
+
           <UserBlock/>
         </header>
 
-        <div className="film-card__wrap">
-          <div className="film-card__info">
-            <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
-            </div>
-
-            <div className="film-card__desc">
-              <h2 className="film-card__title">{name}</h2>
-              <p className="film-card__meta">
-                <span className="film-card__genre">{genreHeader}</span>
-                <span className="film-card__year">{date}</span>
-              </p>
-
-              <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"/>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
-                  <span>My list</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            {GENRES_ITEMS.map((genre, i) => <Genre key={genre} genre={genre} index={i}/>)}
-          </ul>
-
           <div className="catalog__films-list">
             {new Array(filmsCount).fill().map((i) => <FilmCard key={i}/>)}
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
 
@@ -111,14 +62,12 @@ function Main(props) {
           </div>
         </footer>
       </div>
-    </body>);
+    </body>
+  );
 }
 
-Main.propTypes = {
+MyList.propTypes = {
   filmsCount: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  genreHeader: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired,
 };
 
-export default Main;
+export default MyList;
