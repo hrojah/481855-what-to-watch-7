@@ -31,9 +31,9 @@ export const myListFilms = films.slice(0, 8);
 export const moreLikeFilms = films.slice(0, 4);
 
 export const reviews = [
-  {rating: 8.9, comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&#39;s funniest and most exquisitely designed movies in years.', date: 'November 18, 2015', user: {id: Math.random(), name: 'Kate Muir'}, id: Math.random().toString()},
-  {rating: 8.9, comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&#39;s funniest and most exquisitely designed movies in years.', date: 'November 18, 2015', user: {id: Math.random(), name: 'Kate Muir'}, id: Math.random().toString()},
-  {rating: 8.9, comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&#39;s funniest and most exquisitely designed movies in years.', date: 'November 18, 2015', user: {id: Math.random(), name: 'Kate Muir'}, id: Math.random().toString()},
+  {rating: 8.9, comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&#39;s funniest and most exquisitely designed movies in years.', date: new Date(), user: {id: Math.random(), name: 'Kate Muir'}, id: Math.random().toString()},
+  {rating: 8.9, comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&#39;s funniest and most exquisitely designed movies in years.', date: new Date(), user: {id: Math.random(), name: 'Kate Muir'}, id: Math.random().toString()},
+  {rating: 8.9, comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&#39;s funniest and most exquisitely designed movies in years.', date: new Date(), user: {id: Math.random(), name: 'Kate Muir'}, id: Math.random().toString()},
 ];
 
 export const GENRES_ITEMS = [
