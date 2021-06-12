@@ -1,13 +1,14 @@
 import React from 'react';
-import FilmCard from '../film-card/film-card';
-import Genre from '../genre/genre';
-import PropTypes from 'prop-types';
-import {GENRES_ITEMS} from '../../constants/constants';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
+import FilmCard from '../film-card/film-card';
+import PropTypes from 'prop-types';
+import FilmInfo from './film-info';
+import FilmReviews from './film-reviews';
+import {Link} from 'react-router-dom';
 
-function Main(props) {
-  const {name, date, genreHeader, films} = props;
+function FilmPage(props) {
+  const {filmInfo, filmReviews, name, date, genreHeader, films, reviews} = props;
   return (
     <>
       <div className="visually-hidden">
@@ -42,24 +43,21 @@ function Main(props) {
         </svg>
       </div>
 
-      <section className="film-card">
-        <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
-        </div>
+      <section className="film-card film-card--full">
+        <div className="film-card__hero">
+          <div className="film-card__bg">
+            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          </div>
 
-        <h1 className="visually-hidden">WTW</h1>
+          <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header film-card__head">
-          <Logo/>
-          <UserBlock/>
-        </header>
+          <header className="page-header film-card__head">
+            <Logo/>
 
-        <div className="film-card__wrap">
-          <div className="film-card__info">
-            <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
-            </div>
+            <UserBlock/>
+          </header>
 
+          <div className="film-card__wrap">
             <div className="film-card__desc">
               <h2 className="film-card__title">{name}</h2>
               <p className="film-card__meta">
@@ -80,26 +78,46 @@ function Main(props) {
                   </svg>
                   <span>My list</span>
                 </button>
+                <Link to="add-review.html" className="btn film-card__button">Add review</Link>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="film-card__wrap film-card__translate-top">
+          <div className="film-card__info">
+            <div className="film-card__poster film-card__poster--big">
+              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+            </div>
+
+            <div className="film-card__desc">
+              <nav className="film-nav film-card__nav">
+                <ul className="film-nav__list">
+                  <li className="film-nav__item film-nav__item--active">
+                    <Link to="#" className="film-nav__link">Overview</Link>
+                  </li>
+                  <li className="film-nav__item">
+                    <Link to="#" className="film-nav__link">Details</Link>
+                  </li>
+                  <li className="film-nav__item">
+                    <Link to="#" className="film-nav__link">Reviews</Link>
+                  </li>
+                </ul>
+              </nav>
+              {filmInfo ? <FilmInfo/> : ''}
+              {filmReviews ? <FilmReviews reviews={reviews}/> : ''}
+
             </div>
           </div>
         </div>
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            {GENRES_ITEMS.map((genre, i) => <Genre key={genre} genre={genre} index={i}/>)}
-          </ul>
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            {films.map((item) => <FilmCard poster={item.poster} name={item.name} key={item.id}/>)}
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            {films.map((film) => <FilmCard key={film.id} name={film.name} poster={film.poster}/>)}
           </div>
         </section>
 
@@ -111,14 +129,18 @@ function Main(props) {
           </div>
         </footer>
       </div>
-    </>);
+    </>
+  );
 }
 
-Main.propTypes = {
+FilmPage.propTypes = {
+  filmInfo: PropTypes.bool.isRequired,
+  filmReviews: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   genreHeader: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
   films: PropTypes.array.isRequired,
+  reviews: PropTypes.array,
 };
 
-export default Main;
+export default FilmPage;

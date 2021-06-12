@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 function Genre(props) {
   const {genre, index} = props;
   return  (
     <li className={index === 0 ? 'catalog__genres-item catalog__genres-item--active' : 'catalog__genres-item'}>
-      <a href="#" className="catalog__genres-link">{genre}</a>
+      <Link to="#" className="catalog__genres-link">{genre}</Link>
     </li>
   );
 }
