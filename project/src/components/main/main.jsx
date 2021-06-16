@@ -1,13 +1,18 @@
 import React from 'react';
-import FilmCard from '../film-card/film-card';
+import FilmList from '../film-list/film-list';
 import Genre from '../genre/genre';
 import PropTypes from 'prop-types';
 import {GENRES_ITEMS} from '../../constants/constants';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
+import {useHistory} from 'react-router-dom';
+import {AppRoute} from '../../constants/constants';
 
 function Main(props) {
   const {name, date, genreHeader, films} = props;
+
+  const history = useHistory();
+
   return (
     <>
       <div className="visually-hidden">
@@ -44,7 +49,7 @@ function Main(props) {
 
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={films[0].backgroundImage} alt={films[0].name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -57,7 +62,7 @@ function Main(props) {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+              <img src={films[0].poster} alt={films[0].name} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
@@ -68,7 +73,7 @@ function Main(props) {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button onClick={() => history.push(AppRoute.PLAYER)} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
@@ -93,11 +98,7 @@ function Main(props) {
           <ul className="catalog__genres-list">
             {GENRES_ITEMS.map((genre, i) => <Genre key={genre} genre={genre} index={i}/>)}
           </ul>
-
-          <div className="catalog__films-list">
-            {films.map((item) => <FilmCard poster={item.poster} name={item.name} key={item.id}/>)}
-          </div>
-
+          <FilmList films={films}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>

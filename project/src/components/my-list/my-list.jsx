@@ -1,11 +1,13 @@
 import React from 'react';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
-import FilmCard from '../film-card/film-card';
 import PropTypes from 'prop-types';
+import {MY_FILMS_COUNT} from '../../constants/constants';
+import FilmList from '../film-list/film-list';
 
 function MyList(props) {
   const {films} = props;
+  const myFilms = films.slice(0, MY_FILMS_COUNT);
   return (
     <>
       <div className="visually-hidden">
@@ -49,9 +51,7 @@ function MyList(props) {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <div className="catalog__films-list">
-            {films.map((film) => <FilmCard key={film.id} name={film.name} poster={film.poster}/>)}
-          </div>
+          <FilmList films={myFilms}/>
         </section>
 
         <footer className="page-footer">

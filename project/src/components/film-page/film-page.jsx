@@ -1,14 +1,17 @@
 import React from 'react';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
-import FilmCard from '../film-card/film-card';
 import PropTypes from 'prop-types';
 import FilmInfo from './film-info';
 import FilmReviews from './film-reviews';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import {AppRoute, MORE_LIKE_FILMS} from '../../constants/constants';
+import FilmList from '../film-list/film-list';
 
 function FilmPage(props) {
   const {filmInfo, filmReviews, name, date, genreHeader, films, reviews} = props;
+  const moreLikeFilms = films.slice(0, MORE_LIKE_FILMS);
+  const history = useHistory();
   return (
     <>
       <div className="visually-hidden">
@@ -46,7 +49,7 @@ function FilmPage(props) {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+            <img src={films[0].backgroundImage} alt={films[0].name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -66,7 +69,7 @@ function FilmPage(props) {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button onClick={() => history.push(AppRoute.PLAYER)} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
@@ -78,7 +81,7 @@ function FilmPage(props) {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to="add-review.html" className="btn film-card__button">Add review</Link>
+                <Link to={AppRoute.ADD_REVIEW} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -87,7 +90,7 @@ function FilmPage(props) {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+              <img src={films[0].poster} alt={films[0].name} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
@@ -115,10 +118,7 @@ function FilmPage(props) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            {films.map((film) => <FilmCard key={film.id} name={film.name} poster={film.poster}/>)}
-          </div>
+          <FilmList films={moreLikeFilms}/>
         </section>
 
         <footer className="page-footer">

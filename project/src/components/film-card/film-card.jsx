@@ -1,13 +1,17 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {AppRoute} from '../../constants/constants';
 
 function FilmCard(props) {
-  const {name, poster} = props;
+  const {name, previewImage, setFilm, id} = props;
+
+  const history = useHistory();
+
   return (
-    <article className="small-film-card catalog__films-card">
+    <article onClick={() => history.push(AppRoute.FILM)} onMouseEnter={() => setFilm(id)} id={id} className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
-        <img src={poster} alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
+        <img src={previewImage} alt={name} width="280" height="175"/>
       </div>
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to="film-page.html">{name}</Link>
@@ -18,7 +22,9 @@ function FilmCard(props) {
 
 FilmCard.propTypes = {
   name: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+  previewImage: PropTypes.string.isRequired,
+  setFilm: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default FilmCard;

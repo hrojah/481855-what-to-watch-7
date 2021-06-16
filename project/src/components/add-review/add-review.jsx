@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddReviewForm from './add-review-form';
+import Logo from '../logo/logo';
+import UserBlock from '../user-block/user-block';
 
-function Player(props) {
+function AddReview(props) {
+
   const {film} = props;
   return (
     <>
@@ -24,9 +28,6 @@ function Player(props) {
             <path fillRule="evenodd" clipRule="evenodd" d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z" fill="#EEE5B5"/>
           </symbol>
           <symbol id="pause" viewBox="0 0 14 21">
-            <symbol id="play-s" viewBox="0 0 19 19">
-              <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5"/>
-            </symbol>
             <title>Artboard</title>
             <desc>Created with Sketch.</desc>
             <g id="Artboard" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -37,44 +38,31 @@ function Player(props) {
         </svg>
       </div>
 
-      <div className="player">
-        <video src={film.videoLink} className="player__video" poster="img/player-poster.jpg"/>
-
-        <button type="button" className="player__exit">Exit</button>
-
-        <div className="player__controls">
-          <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value="30" max="100"/>
-              <div className="player__toggler" style={{ left: '30%' }}>Toggler</div>
-            </div>
-            <div className="player__time-value">1:30:29</div>
+      <section className="film-card film-card--full">
+        <div className="film-card__header">
+          <div className="film-card__bg">
+            <img src={film.backgroundImage} alt={film.name}/>
           </div>
 
-          <div className="player__controls-row">
-            <button type="button" className="player__play">
-              <svg viewBox="0 0 19 19" width="19" height="19">
-                <use xlinkHref="#play-s"/>
-              </svg>
-              <span>Play</span>
-            </button>
-            <div className="player__name">{film.name}</div>
+          <h1 className="visually-hidden">WTW</h1>
 
-            <button type="button" className="player__full-screen">
-              <svg viewBox="0 0 27 27" width="27" height="27">
-                <use xlinkHref="#full-screen"/>
-              </svg>
-              <span>Full screen</span>
-            </button>
+          <header className="page-header">
+            <Logo/>
+            <UserBlock/>
+          </header>
+
+          <div className="film-card__poster film-card__poster--small">
+            <img src={film.poster} alt={film.name} width="218" height="327"/>
           </div>
         </div>
-      </div>
+        <AddReviewForm/>
+      </section>
     </>
   );
 }
 
-Player.propTypes = {
+AddReview.propTypes = {
   film: PropTypes.object.isRequired,
 };
 
-export default Player;
+export default AddReview;
