@@ -6,8 +6,7 @@ function AddReviewForm() {
   const ratingClickHandler = (evt) => {
     setUserReview([evt.target.value, userReview[1]]);
   };
-  // eslint-disable-next-line no-console
-  console.log(userReview);
+
   return (
     <div className="add-review">
       <form action="#" className="add-review__form">
