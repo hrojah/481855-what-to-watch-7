@@ -6,7 +6,8 @@ function AddReviewForm() {
   const ratingClickHandler = (evt) => {
     setUserReview([evt.target.value, userReview[1]]);
   };
-
+  // eslint-disable-next-line no-console
+  console.log(userReview);
   return (
     <div className="add-review">
       <form action="#" className="add-review__form">
@@ -44,7 +45,7 @@ function AddReviewForm() {
           </div>
         </div>
         <div className="add-review__text">
-          <textarea onInput={(evt) => setUserReview([userReview[0], evt.target.value])} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"/>
+          <textarea onChange={(evt) => setUserReview([userReview[0], evt.target.value])} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"/>
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">Post</button>
           </div>
